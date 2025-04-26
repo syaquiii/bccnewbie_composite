@@ -22,8 +22,10 @@ export const DepositSection = ({
         <Image className="lg:w-[15rem]" src={Maskot} alt="maskot" />
       </div>
       <div className="w-full">
-        <span className="text-lg font-semibold">Ayo setor limbah!</span>
-        <p className="my-4 text-xs lg:text-lg">
+        <h4 className="text-lg font-semibold text-center w-full lg:text-start">
+          Ayo setor limbah!
+        </h4>
+        <p className="my-4 text-xs lg:text-lg text-justify">
           Jangan biarkan sisa-sisa organikmu berakhir sia-sia. Yuk, setor limbah
           organik ke Composite dan jadi bagian dari perubahan yang nyata! Setiap
           kulit buah, sisa sayur, dan daun kering yang kamu kumpulkan akan kami

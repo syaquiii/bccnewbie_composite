@@ -68,7 +68,7 @@ export const DepositForm = ({
     </div>
 
     <div className="flex items-center">
-      <label htmlFor="waste_weight" className="font-bold w-2/5 lg:w-1/5">
+      <label htmlFor="waste_weight" className="font-bold w-3/5 lg:w-1/5">
         Berat Limbah
       </label>
       <Input
