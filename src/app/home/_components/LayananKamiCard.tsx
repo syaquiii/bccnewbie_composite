@@ -8,7 +8,7 @@ const LayananKamiCard: FC<Tlayanankami> = (props) => {
         <props.icon size={40} />
       </span>
       <h3 className="lg:text-xl font-semibold">{props.title}</h3>
-      <p className="text-center font-light text-xs text-sm">{props.desc}</p>
+      <p className="text-center font-light text-xs ">{props.desc}</p>
     </div>
   );
 };

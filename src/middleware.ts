@@ -13,5 +13,11 @@ export function middleware(request: NextRequest) {
     }
   }
 
+  if (pathname.startsWith("/profile")) {
+    if (!authToken || !isTokenValid(authToken)) {
+      return NextResponse.redirect(new URL("/login", request.url));
+    }
+  }
+
   return NextResponse.next();
 }
