@@ -1,8 +1,15 @@
+"use client";
 import React from "react";
 import LogoFooter from "@/assets/img/footer.png";
 import Image from "next/image";
 import { footlist } from "@/data/footlist";
+import { usePathname } from "next/navigation";
 const Footer = () => {
+  const pathname = usePathname();
+
+  if (pathname.includes("login") || pathname.includes("register")) {
+    return null;
+  }
   return (
     <footer className=" bg-light rounded-4xl -mt-20">
       <div className="min-h-[20rem] mycontainer lg:flex items-center flex lg:flex-row flex-col justify-center lg:justify-between">

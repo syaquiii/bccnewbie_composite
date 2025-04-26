@@ -7,6 +7,7 @@ const buttonVariants = cva("rounded-xl  active:scale-95 transition-all", {
   variants: {
     variant: {
       normal: "bg-normal text-light hover:bg-normal-hover ",
+      light: "bg-normal text-ourwhite hover:bg-normal-hover ",
       outline:
         "border border-normal text-normal hover:bg-light hover:text-normal",
     },
