@@ -15,3 +15,21 @@ body {
 .mycontainer {
   @apply container mx-auto lg:px-12 md:px-32 px-8  xl:px-24;
 }
+
+.bghero {
+  background-image: url("../assets/img/herobg.png");
+  @apply bg-cover bg-center bg-no-repeat;
+}
+.aboutus {
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.9),
+      rgba(255, 255, 255, 0.9)
+    ),
+    url("../assets/img/aboutusbg.png");
+  @apply bg-[length:10rem] bg-repeat;
+}
+
+.joinus {
+  background-image: url("../assets/img/joinus.png");
+  @apply bg-cover bg-center bg-no-repeat;
+}
