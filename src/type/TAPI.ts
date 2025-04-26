@@ -51,3 +51,18 @@ export interface DepositPayload {
 }
 
 export type ModalType = "confirmation" | "success" | "error";
+export interface DepositHistoryItem {
+  waste_type: string;
+  waste_weight: number;
+  status: string;
+  pickup_date: string;
+}
+
+export type DepositHistoryResponse = DepositHistoryItem[];
+
+export interface RewardItem {
+  reward: number;
+  pickup_date: string;
+}
+
+export type RewardResponse = RewardItem[];

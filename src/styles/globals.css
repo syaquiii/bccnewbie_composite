@@ -37,7 +37,7 @@ body {
 .headerlimbah {
   background-image: linear-gradient(
       rgba(28, 91, 9, 0.5),
-      rgba(255, 255, 255, 0.811)
+      rgba(255, 255, 255, 0.93)
     ),
     url("../assets/img/headerlimbah.png");
   background-size: cover;
