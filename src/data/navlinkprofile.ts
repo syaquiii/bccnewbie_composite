@@ -9,10 +9,4 @@ export const navlinkprofile = [
     title: "Reward",
     url: "/profile/reward",
   },
-
-  {
-    id: 4,
-    title: "Riwayat Transaksi",
-    url: "/profile/transaksi",
-  },
 ];

@@ -11,10 +11,7 @@ export const registerUser = async (
   payload: RegisterPayload
 ): Promise<RegisterResponse> => {
   try {
-    const response = await core.post<RegisterResponse>(
-      "users/register",
-      payload
-    );
+    const response = await core.post<RegisterResponse>("register", payload);
     return response.data;
   } catch (error) {
     const axiosError = error as ApiError;
@@ -26,7 +23,7 @@ export const loginUser = async (
   payload: LoginPayload
 ): Promise<LoginResponse> => {
   try {
-    const response = await core.post<LoginResponse>("users/login", payload);
+    const response = await core.post<LoginResponse>("login", payload);
     return response.data;
   } catch (error) {
     const axiosError = error as ApiError;

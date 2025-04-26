@@ -122,3 +122,27 @@ export interface MarketDetailResponse {
   data: MarketDetail;
   success: boolean;
 }
+
+export type UserProfileResponse = {
+  user_id: string;
+  email: string;
+  first_name: string;
+  last_name: string;
+};
+
+export type UpdateProfileResponse = {
+  data: {
+    user_id: string;
+    email: string;
+    first_name: string;
+    last_name: string;
+    profile_pic: string;
+  };
+  message: string;
+  success: boolean;
+};
+export type UpdateProfilePayload = {
+  first_name?: string;
+  last_name?: string;
+  profile_pic?: string;
+};
