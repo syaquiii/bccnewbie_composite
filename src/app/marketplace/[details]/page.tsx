@@ -1,6 +1,6 @@
 "use client";
 
-import { usePathname } from "next/navigation";
+import { redirect, usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { getMarketDetail } from "@/api/services/markets";
 import { MarketDetail } from "@/type/TAPI";
@@ -37,7 +37,10 @@ export default function MarketDetailPage() {
 
   return (
     <div className="min-h-screen py-42 mycontainer">
-      <Button className="flex gap-2 items-center mb-8">
+      <Button
+        onClick={() => redirect("/marketplace")}
+        className="flex gap-2 items-center mb-8"
+      >
         <FaBackward /> Kembali
       </Button>
 
