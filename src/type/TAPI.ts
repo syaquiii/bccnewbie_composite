@@ -87,3 +87,38 @@ export interface MarketResponse {
   data: MarketProduct[];
   success: boolean;
 }
+
+export interface MarketDetailResponse {
+  id: string;
+  name: string;
+  description: string;
+  address: string;
+  city: string;
+  province: string;
+  postalCode: string;
+  phone: string;
+  email: string;
+  imageUrl: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface MarketDetail {
+  product_id: string;
+  store_id: string;
+  store_name: string;
+  product_name: string;
+  product_price: number;
+  product_weight: number;
+  product_type: string;
+  product_weight_filter: string;
+  product_usage: string;
+  composition: string;
+  description: string;
+  photo_url: string;
+}
+
+export interface MarketDetailResponse {
+  data: MarketDetail;
+  success: boolean;
+}

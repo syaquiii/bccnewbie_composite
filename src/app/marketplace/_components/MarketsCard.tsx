@@ -7,7 +7,7 @@ const MarketCard = ({ product }: { product: MarketProduct }) => {
     <div className="bg-white rounded-lg shadow-lg overflow-hidden border border-gray-200 hover:shadow-lg transition-shadow">
       <div className="relative h-48 w-full">
         <Image
-          src={product.photo_url || "/placeholder-product.jpg"}
+          src={product.photo_url}
           alt={product.product_name}
           fill
           className="object-cover"
@@ -25,11 +25,6 @@ const MarketCard = ({ product }: { product: MarketProduct }) => {
             {product.product_weight} kg
           </span>
         </div>
-        {product.store_name && (
-          <p className="text-sm text-gray-500 mt-2">
-            Dijual oleh: {product.store_name}
-          </p>
-        )}
       </div>
     </div>
   );

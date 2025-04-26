@@ -4,6 +4,7 @@ import { MarketProduct } from "@/type/TAPI";
 import Pagination from "@/components/Pagination";
 import { getMarketProducts } from "@/api/services/markets";
 import MarketCard from "./MarketsCard";
+import Link from "next/link";
 
 const ITEMS_PER_PAGE = 6;
 
@@ -69,7 +70,12 @@ const Markets = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
         {currentItems.map((product) => (
-          <MarketCard key={product.product_id} product={product} />
+          <Link
+            key={product.product_id}
+            href={`/marketplace/${product.product_id}`}
+          >
+            <MarketCard product={product} />
+          </Link>
         ))}
       </div>
 
