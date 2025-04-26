@@ -33,3 +33,14 @@ body {
   background-image: url("../assets/img/joinus.png");
   @apply bg-cover bg-center bg-no-repeat;
 }
+
+.headerlimbah {
+  background-image: linear-gradient(
+      rgba(28, 91, 9, 0.5),
+      rgba(255, 255, 255, 0.811)
+    ),
+    url("../assets/img/headerlimbah.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}

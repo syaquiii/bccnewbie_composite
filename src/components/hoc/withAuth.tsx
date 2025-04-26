@@ -13,7 +13,7 @@ const withAuth = <P extends object>(Component: React.ComponentType<P>) => {
       if (!isAuthenticated) {
         router.push("/login");
       }
-    }, []);
+    }, [router]);
 
     return <Component {...props} />;
   };

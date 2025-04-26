@@ -10,6 +10,7 @@ const buttonVariants = cva("rounded-xl  active:scale-95 transition-all", {
       light: "bg-normal text-ourwhite hover:bg-normal-hover ",
       outline:
         "border border-normal text-normal hover:bg-light hover:text-normal",
+      danger: "bg-red-600 text-light hover:bg-red-800",
     },
     size: {
       small: "px-3 py-2",

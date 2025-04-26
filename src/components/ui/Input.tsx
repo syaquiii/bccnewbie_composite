@@ -12,6 +12,8 @@ const inputVariants = cva(
           "bg-light text-normal placeholder:text-[#10101080] focus:ring-normal",
         outline:
           "border border-normal bg-transparent text-normal placeholder-normal/70 focus:ring-normal",
+        white:
+          "bg-white text-normal placeholder:text-[#10101080] focus:ring-normal",
       },
       // Rename size menjadi inputSize
       inputSize: {

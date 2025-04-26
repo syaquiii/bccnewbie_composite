@@ -1,6 +1,11 @@
 export const checkAuth = () => {
-  const token =
-    localStorage.getItem("authToken") || sessionStorage.getItem("authToken");
+  if (typeof window === "undefined") {
+    return { isAuthenticated: false, token: null };
+  }
+
+  const cookies = document.cookie.split("; ");
+  const tokenCookie = cookies.find((c) => c.startsWith("authToken="));
+  const token = tokenCookie?.split("=")[1];
 
   if (!token) {
     return { isAuthenticated: false, token: null };

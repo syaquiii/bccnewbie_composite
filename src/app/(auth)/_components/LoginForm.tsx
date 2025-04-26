@@ -35,9 +35,11 @@ const LoginForm = () => {
       });
 
       if (success && token) {
-        const storage = formData.rememberMe ? localStorage : sessionStorage;
-        storage.setItem("authToken", token);
-
+        const cookieExpiry = formData.rememberMe
+          ? `; max-age=${30 * 24 * 60 * 60}`
+          : "";
+        document.cookie = `authToken=${token}; path=/${cookieExpiry}; secure; samesite=lax`;
+        window.location.reload();
         router.push("/home");
       }
     } catch (err: any) {

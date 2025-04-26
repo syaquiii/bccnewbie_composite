@@ -31,3 +31,23 @@ export interface LoginResponse {
   data: string; // JWT token
   success: boolean;
 }
+
+export interface DepositResponse {
+  id: string;
+  message: string;
+}
+
+export interface DepositFormData {
+  name: string;
+  waste_type: string;
+  pickup_method: string;
+  waste_weight: string;
+}
+export interface DepositPayload {
+  name: string;
+  waste_type: string;
+  waste_weight: number;
+  pickup_method: string;
+}
+
+export type ModalType = "confirmation" | "success" | "error";

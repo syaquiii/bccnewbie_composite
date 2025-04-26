@@ -8,6 +8,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import Hamburger from "hamburger-react";
 import { checkAuth } from "@/utils/checkAuth";
+import { User } from "lucide-react";
 
 const Navbar: React.FC = () => {
   const pathname = usePathname();
@@ -16,16 +17,10 @@ const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [navbarVisible, setNavbarVisible] = useState(true);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [userEmail, setUserEmail] = useState("");
-  console.log(userEmail, "ayam");
   useEffect(() => {
-    const { isAuthenticated: authStatus, payload } = checkAuth();
+    const { isAuthenticated: authStatus } = checkAuth();
     setIsAuthenticated(authStatus);
-    if (authStatus && payload) {
-      setUserEmail(payload.email || "");
-    }
   }, []);
-  console.log(isAuthenticated);
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
@@ -40,8 +35,15 @@ const Navbar: React.FC = () => {
   const handleLogout = () => {
     localStorage.removeItem("authToken");
     sessionStorage.removeItem("authToken");
+
+    document.cookie =
+      "authToken=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT; secure; samesite=lax";
+
     setIsAuthenticated(false);
+
     router.push("/login");
+
+    window.location.reload();
   };
 
   if (pathname.includes("login") || pathname.includes("register")) {
@@ -80,12 +82,24 @@ const Navbar: React.FC = () => {
                 </Link>
               </li>
             ))}
+            <li>
+              <Link
+                href="/profile"
+                onClick={() => setIsOpen(false)}
+                className={`block transition-all duration-300 hover:pl-4 hover:text-normal ${
+                  pathname === "profile" || pathname.startsWith("profile")
+                    ? "text-normal font-bold border-l-4 border-normal pl-4"
+                    : "text-black pl-0 border-l-0"
+                }`}
+              >
+                Profile
+              </Link>
+            </li>
           </ul>
 
           {isAuthenticated ? (
             <div className="mt-8 flex flex-col gap-4">
-              <span className="text-normal font-bold">{userEmail}</span>
-              <Button onClick={handleLogout} variant="normal" size="normal">
+              <Button onClick={handleLogout} variant="danger" size="normal">
                 Logout
               </Button>
             </div>
@@ -137,36 +151,18 @@ const Navbar: React.FC = () => {
 
         {isAuthenticated ? (
           <div className="relative group">
-            <button className="flex items-center gap-2">
-              <span className="font-bold text-normal">{userEmail}</span>
-              <svg
-                className="w-4 h-4"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M19 9l-7 7-7-7"
-                />
-              </svg>
-            </button>
+            <div className="rounded-full h-16 w-16 flex items-center text-normal justify-center bg-white">
+              <User />
+            </div>
 
-            <div className="absolute hidden group-hover:block right-0 top-full mt-2 w-48 bg-white rounded-lg shadow-xl py-2">
+            <div className="absolute hidden group-hover:block right-0 top-full mt-2 w-48  bg-white rounded-lg shadow-xl py-2">
               <Link
                 href="/profile"
                 className="block px-4 py-2 hover:bg-gray-100"
               >
                 Profile
               </Link>
-              <Link
-                href="/settings"
-                className="block px-4 py-2 hover:bg-gray-100"
-              >
-                Settings
-              </Link>
+
               <button
                 onClick={handleLogout}
                 className="w-full text-left px-4 py-2 hover:bg-gray-100 text-red-500"
