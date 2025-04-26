@@ -19,7 +19,16 @@ const Page = () => {
       try {
         setLoading(true);
         const data = await getRewardHistory();
-        setRewards(data);
+
+        // Urutkan data berdasarkan pickup_date (terbaru pertama)
+        const sortedData = [...data].sort((a, b) => {
+          return (
+            new Date(b.pickup_date).getTime() -
+            new Date(a.pickup_date).getTime()
+          );
+        });
+
+        setRewards(sortedData);
         setTotalPages(Math.ceil(data.length / ITEMS_PER_PAGE));
       } catch (err) {
         setError("Gagal memuat riwayat reward");
@@ -66,18 +75,33 @@ const Page = () => {
     );
 
   return (
-    <div className="min-h-screen pb-32">
+    <div className="container mx-auto p-4 min-h-screen pb-32">
       <h1 className="text-2xl font-bold mb-6">Riwayat Reward Saya</h1>
 
-      <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-6">
-        <h2 className="text-lg font-semibold text-green-800">
-          Total Reward Anda
-        </h2>
-        <p className="text-2xl font-bold text-green-600">
-          Rp {totalReward.toLocaleString("id-ID")}
-        </p>
+      <div className="flex  justify-between items-center mb-4">
+        <div className="bg-green-50  w-full border border-green-200 rounded-lg p-4">
+          <h2 className="text-lg font-semibold text-green-800">Total Reward</h2>
+          <p className="text-2xl font-bold text-green-600">
+            Rp {totalReward.toLocaleString("id-ID")}
+          </p>
+        </div>
       </div>
-
+      <button
+        className=" w-full text-xl my-8 flex justify-between font-bold text-green-600 hover:text-green-800"
+        onClick={() => {
+          const reversed = [...rewards].reverse();
+          setRewards(reversed);
+        }}
+      >
+        <span className="text-normal mr-4">Filter</span>
+        <span>
+          {rewards[0] &&
+          new Date(rewards[0].pickup_date) <
+            new Date(rewards[rewards.length - 1].pickup_date)
+            ? "↑ Terlama"
+            : "↓ Terbaru"}
+        </span>
+      </button>
       <div className="space-y-4">
         {currentItems.map((item, index) => (
           <RewardItemComponent key={index} item={item} />

@@ -19,7 +19,15 @@ const Page = () => {
       try {
         setLoading(true);
         const data = await getDepositHistory();
-        setHistory(data);
+
+        const sortedData = [...data].sort((a, b) => {
+          return (
+            new Date(b.pickup_date).getTime() -
+            new Date(a.pickup_date).getTime()
+          );
+        });
+
+        setHistory(sortedData);
         setTotalPages(Math.ceil(data.length / ITEMS_PER_PAGE));
       } catch (err) {
         setError("Gagal memuat riwayat deposit");
@@ -35,6 +43,11 @@ const Page = () => {
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
   };
+
+  // Hitung item yang ditampilkan di halaman saat ini
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+  const endIndex = startIndex + ITEMS_PER_PAGE;
+  const currentItems = history.slice(startIndex, endIndex);
 
   if (loading)
     return (
@@ -57,14 +70,26 @@ const Page = () => {
       </div>
     );
 
-  // Hitung item yang ditampilkan di halaman saat ini
-  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-  const endIndex = startIndex + ITEMS_PER_PAGE;
-  const currentItems = history.slice(startIndex, endIndex);
-
   return (
     <div className="container mx-auto p-4 min-h-screen pb-32">
       <h1 className="text-2xl font-bold mb-6">Riwayat Setoran Saya</h1>
+
+      <button
+        className="w-full text-xl my-8 flex justify-between font-bold text-green-600 hover:text-green-800"
+        onClick={() => {
+          const reversed = [...history].reverse();
+          setHistory(reversed);
+        }}
+      >
+        <span className="text-normal mr-4">Filter</span>
+        <span>
+          {history[0] &&
+          new Date(history[0].pickup_date) <
+            new Date(history[history.length - 1].pickup_date)
+            ? "↑ Terlama"
+            : "↓ Terbaru"}
+        </span>
+      </button>
 
       <div className="space-y-4">
         {currentItems.map((item, index) => (
